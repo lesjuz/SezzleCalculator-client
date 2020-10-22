@@ -4,7 +4,7 @@ const api = Axios.create({
     baseURL: '/api/',
 });
 const host = Axios.create({
-    baseURL: 'http://localhost:8080/',
+    baseURL: 'https://sezzle-cal-server.herokuapp.com/',
 });
 
 const chatAPI = {

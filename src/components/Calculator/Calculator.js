@@ -12,12 +12,12 @@ import Messages from "../Messages";
 import LoginForm from "../LoginForm";
 
 
-const SOCKET_URL = 'http://localhost:8080/ws-chat/';
+const SOCKET_URL = 'https://sezzle-cal-server.herokuapp.com/ws-chat/';
 
 
 const Calculator =()=> {
     //state will store the most recent 10 calculations
-    //currentCalc is a display state piece that changes as each new character is added
+
     const [messages, setMessages] = useState([])
     const [user, setUser] = useState(null)
     const [result,setResult]=useState("")
@@ -33,7 +33,7 @@ const Calculator =()=> {
         }).catch(err => {
             console.log('Error Occured while sending message to api');
         })
-        //setMessages(messages.concat(msg));
+
     }
 
     let onSendMessage = (msgText) => {
@@ -99,56 +99,56 @@ const Calculator =()=> {
     };
 
 
-        return (
-            <div>
-                <Container>
-                    <Row className="rows">
-                        <Col className="columns" lg={12} >
-                            <h1 className="App-header">Sezzle App</h1>
-                        </Col>
-                    </Row>
-                    <Row className="rows">
-                        {!!user ?
-                            (
-                                <>
+    return (
+        <div>
+            <Container>
+                <Row className="rows">
+                    <Col className="columns" lg={12} >
+                        <h1 className="App-header">Sezzle App</h1>
+                    </Col>
+                </Row>
+                <Row className="rows">
+                    {!!user ?
+                        (
+                            <>
 
-                                    <SockJsClient
-                                        url={SOCKET_URL}
-                                        topics={['/topic/group']}
-                                        onConnect={onConnected}
-                                        onMessage={msg=>onMessageReceived(msg)}
-                                        debug={false}
+                                <SockJsClient
+                                    url={SOCKET_URL}
+                                    topics={['/topic/group']}
+                                    onConnect={onConnected}
+                                    onMessage={msg=>onMessageReceived(msg)}
+                                    debug={false}
+                                />
+                                <Col className="columns" lg={6} sm={12}>
+
+                                    <h2>Calculator</h2>
+                                    <div className="Calculator">
+                                        <Display display={result}/>
+                                        <ButtonComponent onClick={onClick}/>
+                                    </div>
+                                </Col>
+                                <Col className="columns" lg={6} sm={12}>
+                                    <h2>Chats</h2>
+                                    <Messages
+                                        messages={messages}
+                                        currentUser={user}
                                     />
-                                    <Col className="columns" lg={6} sm={12}>
+                                </Col>
+                            </>
+                        ) :
+                        <Col className="columns" lg={12} >
+                            <LoginForm onSubmit={handleLoginSubmit} />
+                        </Col>
 
-                                        <h2>Calculator</h2>
-                                        <div className="Calculator">
-                                            <Display display={result}/>
-                                            <ButtonComponent onClick={onClick}/>
-                                        </div>
-                                    </Col>
-                                    <Col className="columns" lg={6} sm={12}>
-                                        <h2>Chats</h2>
-                                        <Messages
-                                            messages={messages}
-                                            currentUser={user}
-                                        />
-                                    </Col>
-                                </>
-                            ) :
-                            <Col className="columns" lg={12} >
-                                <LoginForm onSubmit={handleLoginSubmit} />
-                            </Col>
+                    }
 
-                        }
+                </Row>
+            </Container>
 
-                    </Row>
-                </Container>
-
-            </div>
+        </div>
 
 
-        )
+    )
 
 }
 
