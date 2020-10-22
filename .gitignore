@@ -9,10 +9,8 @@
 /coverage
 
 # production
-
 .iml
 /.idea
-.gitignore
 
 # misc
 .DS_Store
