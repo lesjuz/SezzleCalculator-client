@@ -12,7 +12,7 @@ import Messages from "../Messages";
 import LoginForm from "../LoginForm";
 
 
-const SOCKET_URL = 'http://localhost:8080/ws-chat/';
+const SOCKET_URL = 'https://sezzle-cal-server.herokuapp.com/ws-chat/';
 
 
 const Calculator =()=> {
