@@ -12,11 +12,11 @@ import Messages from "../Messages";
 import LoginForm from "../LoginForm";
 
 
-const SOCKET_URL = 'https://sezzle-cal-server.herokuapp.com/ws-chat/';
+const SOCKET_URL = 'http://localhost:8080/ws-chat/';
 
 
 const Calculator =()=> {
-    //state will store the most recent 10 calculations
+
 
     const [messages, setMessages] = useState([])
     const [user, setUser] = useState(null)
@@ -38,7 +38,6 @@ const Calculator =()=> {
 
     let onSendMessage = (msgText) => {
         chatAPI.sendMessage(user.username, msgText).then(res => {
-
         }).catch(err => {
             console.log('Error Occured while sending message to api');
         })
