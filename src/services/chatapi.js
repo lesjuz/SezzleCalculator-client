@@ -7,7 +7,7 @@ const api = Axios.create({
 
 const chatAPI = {
     getMessages: () => {
-        console.log('Calling get messages from API');
+
         return api.get(`/chat/getPrevious`);
     },
 

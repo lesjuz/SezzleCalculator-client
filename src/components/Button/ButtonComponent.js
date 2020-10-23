@@ -3,9 +3,7 @@ import {Button} from 'react-bootstrap';
 import "./Button.css";
 
 class ButtonComponent extends Component {
-    isOperator = val => {
-        return !isNaN(val) || val === '.' || val === '=';
-    };
+
     render() {
         return (
             <div>

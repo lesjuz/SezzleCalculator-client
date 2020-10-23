@@ -26,7 +26,7 @@ const LoginForm = ({ onSubmit }) => {
             />
             <br />
             <Button variant="contained" color="primary" onClick={handleSubmit} >
-                Login
+                Join
              </Button>
 
         </div>
