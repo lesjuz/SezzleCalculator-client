@@ -25,6 +25,7 @@ const Calculator =()=> {
 
     let onConnected = () => {
         console.log("Connected!!")
+        onMessageReceived();
     }
 
     let onMessageReceived = (msg) => {
