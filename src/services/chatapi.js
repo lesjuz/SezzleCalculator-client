@@ -1,16 +1,14 @@
 import Axios from "axios";
 
 const api = Axios.create({
-    baseURL: '/api/',
+    baseURL: 'https://sezzle-cal-server.herokuapp.com',
 });
-const host = Axios.create({
-    baseURL: 'https://sezzle-cal-server.herokuapp.com/',
-});
+
 
 const chatAPI = {
     getMessages: () => {
         console.log('Calling get messages from API');
-        return host.get(`chat/getPrevious`);
+        return api.get(`/chat/getPrevious`);
     },
 
     sendMessage: (username, text) => {
@@ -18,7 +16,7 @@ const chatAPI = {
             sender: username,
             content: text
         }
-        return api.post(`send`, msg);
+        return api.post(`/api/send`, msg);
     }
 }
 
