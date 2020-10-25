@@ -8,7 +8,7 @@ const api = Axios.create({
 const chatAPI = {
     getMessages: () => {
 
-        return api.get(`/chat`);
+        return api.get(`/chats`);
     },
 
     sendMessage: (username, text) => {
