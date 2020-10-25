@@ -9,15 +9,14 @@
 }
 
 .Button:focus {
-    outline: 0px;
+    outline: 0;
 }
 .Button:hover{
     background-color: #3a3e3e;
 }
 .Button:active {
     opacity: 0.5;
-    /*border-color: unset;
-    background-color: #575e5e;*/
+
 }
 
 .BlackButton {

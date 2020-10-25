@@ -1,79 +1,30 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 
 import "./Display.css";
-
-class Display extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = { display: props.display, width: window.width };
-
-        this.divRef = React.createRef();
-        this.spanRef = React.createRef();
-
-        this.previousWidth = window.width;
-    }
-
-    updateDimensions() {
-        this.setState({ ...this.state, width: window.innerWidth });
-    }
-
-    componentDidMount() {
-        window.addEventListener("resize", this.updateDimensions.bind(this));
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener("resize", this.updateDimensions.bind(this));
-    }
-
-    getFontSize() {
-        return parseFloat(
-            window
-                .getComputedStyle(this.divRef.current, null)
-                .getPropertyValue("font-size")
-        );
-    }
-
-    reduceFontSize() {
-        if (
-            this.divRef.current.clientWidth >
-            this.spanRef.current.clientWidth + 40
-        ) {
-            return;
-        }
-
-        this.divRef.current.style.fontSize = this.getFontSize() - 10 + "px";
-
-        this.reduceFontSize();
-    }
-
-    resetFontSize() {
-        this.divRef.current.style.fontSize = "14vmin";
-    }
-
+import AutoScalingText from "./AutoScaling";
+class CalculatorDisplay extends React.Component {
     render() {
+        const { value, ...props } = this.props
+
+        const language = navigator.language || 'en-US'
+        let formattedValue = parseFloat(value).toLocaleString(language, {
+            useGrouping: true,
+            maximumFractionDigits: 6
+        })
+
+        // Add back missing .0 in e.g. 12.0
+        const match = value.match(/\.\d*?(0*)$/)
+
+        if (match)
+            formattedValue += (/[1-9]/).test(match[0]) ? match[1] : match[0]
+
         return (
-            <div ref={this.divRef} className="Display">
-        <span ref={this.spanRef} className="DisplaySpan">
-          {this.props.display}
-        </span>
+            <div {...props} className="display">
+                <AutoScalingText>{formattedValue}</AutoScalingText>
             </div>
-        );
-    }
-
-    componentDidUpdate() {
-        let divWidth = this.divRef.current.clientWidth;
-
-        this.resetFontSize();
-        this.reduceFontSize();
-
-        this.previousWidth = divWidth;
+        )
     }
 }
 
-Display.propTypes = {
-    display: PropTypes.string,
-};
-
-export default Display;
+export default CalculatorDisplay;

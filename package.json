@@ -12,6 +12,7 @@
     "react": "^16.14.0",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^16.14.0",
+    "react-point": "^3.0.1",
     "react-scripts": "^3.4.4",
     "react-stomp": "^5.0.0",
     "sockjs": "^0.3.21"

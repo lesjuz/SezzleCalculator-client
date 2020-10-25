@@ -1,4 +1,4 @@
-.Display {
+.display {
     width: 100%;
     height: 20%;
     background-color: #323232;
@@ -9,6 +9,11 @@
     flex-direction: column-reverse;
 }
 
-.DisplaySpan {
-    margin: 16px;
+.auto-scaling-text {
+    display: inline-block;
+}
+.display .auto-scaling-text {
+    padding: 0 30px;
+    right: 0;
+    transform-origin: right;
 }

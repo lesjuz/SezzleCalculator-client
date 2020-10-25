@@ -15,14 +15,14 @@
 }
 
 .messages-list {
-  padding: 20px 0;
+  padding: 20px 0 0 0;
   max-width: 900px;
   width: 100%;
   margin: 0 auto;
   list-style: none;
-  padding-left: 0;
   flex-grow: 1;
   overflow: auto;
+  text-align: left;
 }
 
 .Messages-message {
